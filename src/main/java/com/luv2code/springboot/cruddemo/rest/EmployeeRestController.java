@@ -1,5 +1,6 @@
 package com.luv2code.springboot.cruddemo.rest;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.luv2code.springboot.cruddemo.entity.Employee;
 import com.luv2code.springboot.cruddemo.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +14,13 @@ public class EmployeeRestController {
 
     private EmployeeService employeeService;
 
+    private ObjectMapper objectMapper;
+
     // quick and dirty: inject employee dao
     @Autowired
-    public EmployeeRestController(EmployeeService theEmployeeService) {
+    public EmployeeRestController(EmployeeService theEmployeeService, ObjectMapper theObjectMapper) {
         employeeService = theEmployeeService;
+        objectMapper = theObjectMapper;
     }
 
     // expose "/employees" and return a list of employees
